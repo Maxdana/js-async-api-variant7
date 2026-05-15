@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Довідник країн світу</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        .search-container {
+            position: relative;
+            flex-grow: 1;
+        }
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            color: #333;
+        }
+        .autocomplete-items div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Довідник країн світу</h1>
+
+        <section class="controls">
+            <div class="search-box">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Вводьте назву англійською (напр. Ukraine)..." autocomplete="off">
+                    <div id="main-autocomplete" class="autocomplete-items"></div>
+                </div>
+                <button id="searchBtn">Пошук</button>
+            </div>
+            
+            <div class="filters">
+                <select id="regionFilter">
+                    <option value="all">Усі регіони</option>
+                    <option value="Africa">Африка</option>
+                    <option value="Americas">Америка</option>
+                    <option value="Asia">Азія</option>
+                    <option value="Europe">Європа</option>
+                    <option value="Oceania">Океанія</option>
+                </select>
+                <select id="sortSelect">
+                    <option value="default">Без сортування</option>
+                    <option value="asc">Населення (↑)</option>
+                    <option value="desc">Населення (↓)</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="loader" class="hidden">Завантаження...</div>
+        <div id="errorMessage" class="error hidden"></div>
+        <section id="countryDetail" class="detail-section hidden"></section>
+
+        <section id="comparisonSection" class="comparison-section hidden">
+            <h2>Порівняння країн</h2>
+            <div class="comparison-grid" id="comparisonGrid"></div>
+            <div class="add-to-compare">
+                <div class="search-container">
+                    <input type="text" id="compareInput" placeholder="Додати англійською..." autocomplete="off">
+                    <div id="compare-autocomplete" class="autocomplete-items"></div>
+                </div>
+                <button id="addCompareBtn">Додати</button>
+            </div>
+        </section>
+
+        <section class="list-section">
+            <h2>Список країн</h2>
+            <div id="countriesList" class="countries-grid"></div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
